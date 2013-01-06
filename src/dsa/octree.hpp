@@ -11,22 +11,6 @@ public:
         D           data;
     };
     
-private:
-    
-    vec3<T>                 origin;
-    vec3<T>                 half_size;
-    enum { PARENT, LEAF }   node_type;
-    
-    union {
-        octree<T,D>*        children[8];
-        struct {
-            int             n_pairs;
-            char            pairs[sizeof(pair)];
-        };
-    };
-    
-public:
-    
     octree(T half_size_)
     :   origin(vec3<T>(0, 0, 0)),
         half_size(vec3<T>(half_size_, half_size_, half_size_)),
@@ -85,6 +69,18 @@ public:
     }
     
 private:
+    
+    vec3<T>                 origin;
+    vec3<T>                 half_size;
+    enum { PARENT, LEAF }   node_type;
+    
+    union {
+        octree<T,D>*        children[8];
+        struct {
+            int             n_pairs;
+            char            pairs[sizeof(pair)];
+        };
+    };
     
     int ix_for_point(vec3<T> p) const {
         int ix = 0;
