@@ -32,10 +32,11 @@ public:
         n_pairs(0)
     { }
     
-    ~octree()
-    {
-        for (int i = 0; i < 8; i++) {
-            delete children[i];
+    ~octree() {
+        if (node_type == PARENT) {
+            for (int i = 0; i < 8; i++) {
+                delete children[i];
+            }
         }
     }
     
