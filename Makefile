@@ -37,6 +37,9 @@ $(CONFIG):
 rebuild: clean all
 	
 retest: clean test
+
+todo:
+	@grep -rInso 'TODO: \(.\+\)' src
 	
 clean:
 	@$(ECHO) "CLEAN "
