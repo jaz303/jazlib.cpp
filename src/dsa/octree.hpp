@@ -4,8 +4,6 @@
 // Template arguments:
 // T: type of vector components (e.g. float, double)
 // D: type of data associated with each point in the octree.
-//    due to a hacky workaround used in the code, it's recommended to use
-//    only primitives, pointers or classes with trivial destructors.
 template <class T, class D>
 class octree
 {
@@ -41,6 +39,10 @@ public:
         if (node_type == PARENT) {
             for (int i = 0; i < 8; i++) {
                 delete children[i];
+            }
+        } else {
+            for (int i = 0; i < n_pairs; i++) {
+                ((pair*)pairs)[i].~pair();
             }
         }
     }
