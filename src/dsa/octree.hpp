@@ -49,7 +49,7 @@ public:
     
     void insert(vec3<T> point, D data) {
         if (node_type == LEAF) {
-            if (n_pairs == 0) {
+            if (n_pairs < MAX_PAIRS) {
                 ((pair*)pairs)[n_pairs].point = point;
                 ((pair*)pairs)[n_pairs].data = data;
                 n_pairs++;
@@ -78,6 +78,8 @@ public:
     
 private:
     
+    static const int        MAX_PAIRS = 1;
+    
     vec3<T>                 origin;
     vec3<T>                 half_size;
     enum { PARENT, LEAF }   node_type;
@@ -86,7 +88,7 @@ private:
         octree<T,D>*        children[8];
         struct {
             int             n_pairs;
-            char            pairs[sizeof(pair)];
+            char            pairs[sizeof(pair) * MAX_PAIRS];
         };
     };
     
