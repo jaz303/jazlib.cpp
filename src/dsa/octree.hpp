@@ -1,6 +1,11 @@
 #ifndef JAZLIB_OCTREE_HPP
 #define JAZLIB_OCTREE_HPP
 
+// Template arguments:
+// T: type of vector components (e.g. float, double)
+// D: type of data associated with each point in the octree.
+//    due to a hacky workaround used in the code, it's recommended to use
+//    only primitives, pointers or classes with trivial destructors.
 template <class T, class D>
 class octree
 {
